@@ -16,12 +16,19 @@ const lerp = (start, end, ratio) => {
  */
 
 /**
+ * @typedef {Object} PointWithOffset
+ * @extends Point
+ * @property {number} offset - offset from aStart. `offset = 0` when the intersection
+ * is exactly at `aStart` and `offset = 1` when it is at `aEnd`
+ */
+
+/**
  * Gets intersection between two lines, a and b
  * @param {Point} aStart - start point of line a
  * @param {Point} aEnd - end point of line a
  * @param {Point} bStart - start point of line b
  * @param {Point} bEnd - end point of line b
- * @returns {{ offset: number, x: number, y: number } | null}
+ * @returns {PointWithOffset | null}
  */
 const getIntersection = (aStart, aEnd, bStart, bEnd) => {
     const tTop = (bEnd.x - bStart.x) * (aStart.y - bStart.y) - (bEnd.y - bStart.y) * (aStart.x - bStart.x);

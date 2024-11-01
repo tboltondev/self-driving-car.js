@@ -31,8 +31,14 @@ class Sensor {
         }
     }
 
-    // TODO: add types
+    /**
+     * @param {[Point, Point]} ray
+     * @param {RoadBorders} roadBorders
+     * @param {Car[]} traffic
+     * @returns {PointWithOffset | null}
+     */
     #getReading(ray, roadBorders, traffic) {
+        /** @type {PointWithOffset[]} */
         let touches = [];
 
         for (let i = 0; i < roadBorders.length; i++) {
@@ -49,6 +55,7 @@ class Sensor {
         }
 
         for (let i = 0; i < traffic.length; i++) {
+            /** @type {Polygon} */
             const poly = traffic[i].polygon;
 
             for (let j = 0; j < poly.length; j++) {
