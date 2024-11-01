@@ -1,4 +1,10 @@
+/**
+ * @typedef {("DUMMY" | "KEYS")} ControlType
+ */
 class Controls {
+    /**
+     * @param {ControlType} type
+     */
     constructor(type) {
         this.forward = false;
         this.left = false;

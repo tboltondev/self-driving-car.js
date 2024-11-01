@@ -1,4 +1,12 @@
 class Car {
+    /**
+     * @param {number} x - x coordinate of the car
+     * @param {number} y - y coordinate of the car
+     * @param {number} width - width of the car
+     * @param {number} height - height of the car
+     * @param {ControlType} controlType - how the car is controlled
+     * @param {number} maxSpeed - maximum speed of the car
+     */
     constructor(x, y, width, height, controlType, maxSpeed = 6) {
         this.x = x;
         this.y = y;
@@ -12,12 +20,16 @@ class Car {
         this.angle = 0;
         this.damaged = false;
 
-        if (controlType != "DUMMY") {
+        if (controlType !== "DUMMY") {
             this.sensor = new Sensor(this);
         }
         this.controls = new Controls(controlType);
     }
 
+    /**
+     * @param {[[Point, Point], [Point, Point]]} roadBorders
+     * @param {Car[]} traffic
+     */
     update(roadBorders, traffic) {
         if (!this.damaged) {
             this.#move();
@@ -29,6 +41,11 @@ class Car {
         }
     }
 
+    /**
+     * @param {[[Point, Point], [Point, Point]]} roadBorders
+     * @param {Car[]} traffic
+     * @returns {boolean} true if car has crashed
+     */
     #assessDamage(roadBorders, traffic) {
         for (let i = 0; i < roadBorders.length; i++) {
             if (polysIntersect(this.polygon, roadBorders[i])) {
@@ -44,6 +61,10 @@ class Car {
         return false;
     }
 
+    /**
+     * Creates a polygon to detect collisions of the car with other objects
+     * @returns {Polygon}
+     */
     #createPolygon() {
         const points = [];
         const rad = Math.hypot(this.width, this.height) / 2;
@@ -65,7 +86,7 @@ class Car {
     }
 
     #move() {
-        // forward backard movement
+        // forward backward movement
         if (this.controls.forward) {
             this.speed += this.acceleration;
         }
@@ -107,6 +128,11 @@ class Car {
         this.y -= Math.cos(this.angle) * this.speed;
     }
 
+    /**
+     * Draw the car on a canvas element
+     * @param {CanvasRenderingContext2D} ctx - canvas context to draw the car on
+     * @param {string} colour - color of the car
+     */
     draw(ctx, colour) {
         ctx.fillStyle = this.damaged ? "gray" : colour;
         ctx.beginPath();

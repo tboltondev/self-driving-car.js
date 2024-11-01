@@ -1,4 +1,9 @@
 class Road {
+    /**
+     * @param {number} x - center x position of the road
+     * @param {number} width - width of the road
+     * @param {number} laneCount - number of lanes
+     */
     constructor(x, width, laneCount = 3) {
         this.x = x;
         this.width = width;
@@ -21,12 +26,20 @@ class Road {
         ];
     }
 
+    /**
+     * Get x position at the center of given lane
+     * @param {number} laneIndex - lane to get the center position of, indexes start at 0
+     * @returns {number} x position at center of lane
+     */
     getLaneCenter(laneIndex) {
         const laneWidth = this.width / this.laneCount;
-        return this.left + laneWidth / 2 + 
-            Math.min(laneIndex, this.laneCount - 1) * laneWidth;
+        return this.left + laneWidth / 2 + Math.min(laneIndex, this.laneCount - 1) * laneWidth;
     }
 
+    /**
+     * Draw the road on a canvas element
+     * @param {CanvasRenderingContext2D} ctx - canvas context to draw the road on
+     */
     draw(ctx) {
         ctx.lineWidth = 5;
         ctx.strokeStyle = "white";

@@ -1,4 +1,7 @@
 class Sensor {
+    /**
+     * @param {Car} car - A car instance to attach the sensor to
+     */
     constructor(car) {
         this.car = car;
         this.rayCount = 5;
@@ -9,6 +12,10 @@ class Sensor {
         this.readings = [];
     }
 
+    /**
+     * @param {[[Point, Point], [Point, Point]]} roadBorders
+     * @param {Car[]} traffic
+     */
     update(roadBorders, traffic) {
         this.#castRays();
         this.readings = [];
@@ -24,6 +31,7 @@ class Sensor {
         }
     }
 
+    // TODO: add types
     #getReading(ray, roadBorders, traffic) {
         let touches = [];
 
@@ -34,12 +42,12 @@ class Sensor {
                 roadBorders[i][0],
                 roadBorders[i][1]
             );
-            
+
             if (touch) {
                 touches.push(touch);
             }
         }
-        
+
         for (let i = 0; i < traffic.length; i++) {
             const poly = traffic[i].polygon;
 
@@ -72,7 +80,7 @@ class Sensor {
             const rayAngle = lerp(
                 this.raySpread / 2,
                 -this.raySpread / 2,
-                this.rayCount == 1 ? 0.5 : i / (this.rayCount - 1)
+                this.rayCount === 1 ? 0.5 : i / (this.rayCount - 1)
             ) + this.car.angle;
 
             const start = { x: this.car.x , y: this.car.y };
@@ -85,6 +93,10 @@ class Sensor {
         }
     }
 
+    /**
+     * Draw the sensors on a canvas element
+     * @param {CanvasRenderingContext2D} ctx - The canvas context to draw the sensors on
+     */
     draw(ctx) {
         for (let i = 0; i < this.rayCount; i++) {
             let end = this.rays[i][1];
