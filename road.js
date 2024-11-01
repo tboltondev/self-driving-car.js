@@ -1,3 +1,6 @@
+/**
+ * @typedef {[[Point, Point], [Point, Point]]} RoadBorders
+ */
 class Road {
     /**
      * @param {number} x - center x position of the road

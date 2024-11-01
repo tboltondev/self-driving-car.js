@@ -27,7 +27,7 @@ class Car {
     }
 
     /**
-     * @param {[[Point, Point], [Point, Point]]} roadBorders
+     * @param {RoadBorders} roadBorders
      * @param {Car[]} traffic
      */
     update(roadBorders, traffic) {
@@ -42,7 +42,7 @@ class Car {
     }
 
     /**
-     * @param {[[Point, Point], [Point, Point]]} roadBorders
+     * @param {RoadBorders} roadBorders
      * @param {Car[]} traffic
      * @returns {boolean} true if car has crashed
      */

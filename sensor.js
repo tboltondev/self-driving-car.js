@@ -13,7 +13,7 @@ class Sensor {
     }
 
     /**
-     * @param {[[Point, Point], [Point, Point]]} roadBorders
+     * @param {RoadBorders} roadBorders
      * @param {Car[]} traffic
      */
     update(roadBorders, traffic) {
