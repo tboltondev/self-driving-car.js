@@ -1,5 +1,5 @@
 /**
- * @typedef {("DUMMY" | "KEYS")} ControlType
+ * @typedef {("DUMMY" | "KEYS" | "AI")} ControlType
  */
 class Controls {
     /**
