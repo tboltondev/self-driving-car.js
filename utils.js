@@ -79,3 +79,15 @@ const polysIntersect = (poly1, poly2) => {
     return false;
 }
 
+/**
+ * Returns an RGBA color value for a given positive or negative number
+ * @param {number} value - the value to create an RGBA color for
+ * @returns {string} - an RGBA color value
+ */
+const getRGBA = (value) => {
+    const alpha = Math.abs(value);
+    const r = value < 0 ? 0 : 255;
+    const g = r;
+    const b = value > 0 ? 0 : 255;
+    return `rgba(${r},${g},${b},${alpha})`;
+}
